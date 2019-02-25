@@ -3,9 +3,6 @@ const HtmlWebPackPlugin = require('html-webpack-plugin')
 module.exports = {
   mode: 'development',
   devtool: 'inline-source-map',
-  devServer: {
-    contentBase: './dist',
-  },
   module: {
     rules: [
       {
@@ -24,6 +21,9 @@ module.exports = {
         ],
       },
     ],
+  },
+  output: {
+    publicPath: '/',
   },
   resolve: {
     extensions: ['.js', '.jsx'],

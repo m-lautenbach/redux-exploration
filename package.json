@@ -2,12 +2,12 @@
   "name": "redux-exploration",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "webpack --env prod",
     "watch": "webpack --watch",
-    "start": "webpack-dev-server --open --history-api-fallback",
+    "start": "node server.js",
     "analyze": "webpack --env prod --profile --json > stats.json && webpack-bundle-analyzer stats.json dist"
   },
   "keywords": [],
@@ -26,6 +26,8 @@
     "webpack-dev-server": "^3.2.0"
   },
   "dependencies": {
+    "express": "^4.16.4",
+    "path": "^0.12.7",
     "path-parser": "^4.2.0",
     "preact": "^8.4.2",
     "preact-redux": "^2.0.3",
