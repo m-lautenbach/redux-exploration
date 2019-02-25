@@ -5,7 +5,7 @@ import { h, render } from 'preact'
 // check.
 require('preact/debug')
 import { Provider } from 'preact-redux'
-import Main from './Main'
+import Main from './components/Main'
 import store from './store'
 
 render(<Provider store={store}><Main/></Provider>, document.body)

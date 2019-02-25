@@ -2,9 +2,11 @@
 import { h } from 'preact'
 import { connect } from 'preact-redux'
 import { lensProp, view, compose } from 'ramda'
-import { lensPath, lensQuery } from './routing/lenses'
+import { css } from 'emotion'
+import { lensRoute, lensQuery } from '../routing/lenses'
+import Navigation from './Navigation'
 
-const lensTestPage = lensPath('/test/:id')
+const lensTestPage = lensRoute('/test/:id')
 const lensId = compose(
   lensTestPage,
   lensProp('id'),
@@ -19,7 +21,13 @@ export default connect(
   }),
 )(
   ({ atTestPage, testPageId, filter }) =>
-    <div id="foo">
+    <div
+      id="main"
+      className={css`
+        font-family: 'Quicksand', sans-serif;
+      `}
+    >
+      <Navigation/>
       <h1>Hello World</h1>
       <span>{atTestPage && 'atTestPage'} {testPageId} {filter}</span>
     </div>,

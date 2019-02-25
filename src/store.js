@@ -1,7 +1,7 @@
 import { createStore, applyMiddleware } from 'redux'
 import { compose, set } from 'ramda'
 
-import { state as routingState } from './routing/lenses'
+import { lensState as routingState } from './routing/lenses'
 import locationToPersistable from './routing/locationToPersistable'
 import reducer from './reducer'
 import middlewares from './middlewares'

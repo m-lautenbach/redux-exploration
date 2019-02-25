@@ -1,6 +1,6 @@
-import { compose } from 'ramda'
+import { compose, flip, map } from 'ramda'
 import routing from './routing/internal/reducer'
 
 const reducers = [routing]
 
-export default compose(...reducers)
+export default compose(...map(flip, reducers))

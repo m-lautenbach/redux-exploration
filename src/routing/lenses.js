@@ -2,23 +2,23 @@ import { compose, lens, lensProp } from 'ramda'
 import { parse as qsParse, stringify as qsStringify } from 'query-string'
 import Path from 'path-parser'
 
-export const location = lensProp('location')
-export const state = location
+export const lensLocation = lensProp('location')
+export const lensState = lensLocation
 
-const _lensPath = testMethod => pattern => compose(
-  location,
-  lensProp('pathname'),
+export const lensPath = compose(lensLocation, lensProp('pathname'))
+const _lensRoute = testMethod => pattern => compose(
+  lensPath,
   lens(
     path => (new Path(pattern))[testMethod](path),
     params => (new Path(pattern)).build(params),
   ),
 )
 
-export const lensPath = _lensPath('test')
-export const lensPathPartial = _lensPath('partialTest')
+export const lensRoute = _lensRoute('test')
+export const lensRoutePartial = _lensRoute('partialTest')
 
 export const lensQuery = compose(
-  location,
+  lensLocation,
   lensProp('search'),
   lens(
     qsParse,
