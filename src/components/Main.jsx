@@ -13,7 +13,7 @@ const lensId = compose(
 )
 const lensFilter = compose(lensQuery, lensProp('filter'))
 
-export default connect(
+const Main = connect(
   state => ({
     atTestPage: view(lensTestPage, state) !== null,
     testPageId: view(lensId, state),
@@ -32,3 +32,5 @@ export default connect(
       <span>{atTestPage && 'atTestPage'} {testPageId} {filter}</span>
     </div>,
 )
+Main.displayName = 'Main'
+export default Main
