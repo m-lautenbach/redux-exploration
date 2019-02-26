@@ -6,6 +6,7 @@ import { h, render } from 'preact'
 require('preact/debug')
 import { Provider } from 'preact-redux'
 import Main from './components/Main'
-import store from './store'
+import store from './client/store'
 
-render(<Provider store={store}><Main/></Provider>, document.body)
+const parent = document.body
+render(<Provider store={store}><Main/></Provider>, parent, parent.firstElementChild)

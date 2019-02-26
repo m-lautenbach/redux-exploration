@@ -25,6 +25,7 @@ const Item = connect(
     <div
       {...{ onClick }}
       className={css`
+        user-select: none;
         text-transform: capitalize;
         cursor: pointer;
         border: #484848 solid 1px;

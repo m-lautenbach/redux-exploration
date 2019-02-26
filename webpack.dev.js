@@ -23,7 +23,7 @@ module.exports = {
     ],
   },
   output: {
-    publicPath: '/',
+    publicPath: '/static',
   },
   resolve: {
     extensions: ['.js', '.jsx'],
