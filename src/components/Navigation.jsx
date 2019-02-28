@@ -1,6 +1,5 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import { css } from 'emotion'
 import { view, map, equals, flip, apply, useWith, prop, pipe } from 'ramda'
 
 import pages from './pages'
@@ -22,22 +21,28 @@ const Item = connect(
 )(
   ({ title, onClick, active }) =>
     <div
-      {...{ onClick }}
-      className={css`
-        user-select: none;
-        text-transform: capitalize;
-        cursor: pointer;
-        border: #484848 solid 1px;
-        border-right: none;
-        border-left: none;
-        border-radius: .2rem;
-        padding: .2rem;
-        transition: background-color .8s;
-        ${!active && css`:hover {
-          background-color: #e1f0fa;
-        }`}
-        ${active && css`background-color: #ffe6e6;`}
-      `}
+      {...{
+        onClick,
+        css: {
+          userSelect: 'none',
+          textTransform: 'capitalize',
+          cursor: 'pointer',
+          border: '#484848 solid 1px',
+          borderRight: 'none',
+          borderLeft: 'none',
+          borderRadius: '.2rem',
+          padding: '.2rem',
+          transition: 'background-color .8s',
+          ...(active ?
+              { backgroundColor: '#ffe6e6' } :
+              {
+                '&:hover': {
+                  backgroundColor: '#e1f0fa',
+                },
+              }
+          ),
+        },
+      }}
     >
       {title}
     </div>,
@@ -45,18 +50,21 @@ const Item = connect(
 Item.displayName = 'Item'
 
 const Navigation = () =>
-  <div className={css`
-      display: flex;
-      > * {
-        margin-right: 1rem;
-      };
-      > *:last-child { margin-right: 0 };
-      justify-content: space-evenly;
-  `}>
+  <div
+    css={{
+      display: 'flex',
+      '> *': {
+        marginRight: '1rem',
+      },
+      '> *:last-child': { marginRight: 0 },
+      justifyContent: 'space-evenly',
+
+    }}
+  >
     {
       ['HOME', 'TASK_LIST', 'CONTEXT_LIST'].map(
         page =>
-          <Item key={page} title={pages[page].title} page={page}/>,
+          <Item key={page} title={pages[page].title} page={page} />,
       )
     }
   </div>

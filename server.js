@@ -1,5 +1,5 @@
 import React from 'react'
-import ReactDOMServer from 'react-dom/server'
+import { renderToString } from 'react-dom/server'
 import { createStore } from 'redux'
 import { Provider } from 'react-redux'
 import express from 'express'
@@ -20,7 +20,7 @@ const render = (request) => {
   const initialState = createInitialState(location)
   const store = createStore(reducer, initialState)
 
-  const rendered = ReactDOMServer.renderToString(
+  const rendered = renderToString(
     <Provider store={store}>
       <Main/>
     </Provider>,
