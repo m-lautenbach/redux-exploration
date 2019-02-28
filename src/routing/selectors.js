@@ -1,11 +1,11 @@
-import { always, T, view, toPairs, pipe, map, cond, append } from 'ramda'
+import { always, T, view, toPairs, pipe, map, cond, append, useWith, flip, prop, apply } from 'ramda'
 import pages from '../components/pages'
 import { lensRoute } from './lenses'
-import pagePaths from './pagePaths'
+import pageRoutes from './pageRoutes'
 
 export const getPageByRoute = pipe(
   toPairs,
-  map(([page, route]) => [view(lensRoute(route)), always(pages[page])]),
+  map(apply(useWith(flip(Array), [pipe(flip(prop)(pages), always), pipe(lensRoute, view)]))),
   append([T, always(pages.NOT_FOUND)]),
   cond,
-)(pagePaths)
+)(pageRoutes)

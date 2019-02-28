@@ -5,7 +5,7 @@ import { view, map, equals, flip, apply, useWith, prop, pipe } from 'ramda'
 
 import pages from './pages'
 import { lensPath } from '../routing/lenses'
-import pagePaths from '../routing/pagePaths'
+import pagePaths from '../routing/pageRoutes'
 
 const stateToProps = spec => (state, props) => map(flip(apply)([state, props]), spec)
 

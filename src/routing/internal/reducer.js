@@ -1,6 +1,6 @@
 import { allPass, cond, equals, flip, nthArg, pipe, path, prop, set, T, useWith, identity } from 'ramda'
 import { lensLocation, lensPath } from '../lenses'
-import pagePaths from '../pagePaths'
+import pagePaths from '../pageRoutes'
 
 const action = nthArg(0)
 const state = nthArg(1)
