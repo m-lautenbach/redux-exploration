@@ -41,7 +41,7 @@ app.get('*', function (request, response) {
       response.send(template
         .replace(
           '<div id="app"></div>',
-          `${rendered}
+          `<div id="app">${rendered}</div>
           <script>
             // WARNING: See the following for security issues around embedding JSON in HTML:
             // http://redux.js.org/recipes/ServerRendering.html#security-considerations

@@ -4,5 +4,4 @@ import { Provider } from 'react-redux'
 import Main from './components/Main'
 import store from './client/store'
 
-const parent = document.body
-render(<Provider store={store}><Main/></Provider>, parent)
+render(<Provider store={store}><Main /></Provider>, document.getElementById('app'))
