@@ -32,11 +32,11 @@
     "express": "^4.16.4",
     "path": "^0.12.7",
     "path-parser": "^4.2.0",
-    "preact": "^8.4.2",
-    "preact-redux": "^2.0.3",
-    "preact-render-to-string": "^4.1.0",
     "query-string": "^6.2.0",
     "ramda": "^0.26.1",
+    "react": "^16.8.3",
+    "react-dom": "^16.8.3",
+    "react-redux": "^6.0.1",
     "redux": "^4.0.1"
   }
 }

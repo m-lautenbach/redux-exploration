@@ -1,6 +1,5 @@
-/** @jsx h */
-import { h } from 'preact'
-import { connect } from 'preact-redux'
+import React from 'react'
+import { connect } from 'react-redux'
 import { css } from 'emotion'
 import { view, map, equals, flip, apply, useWith, prop, pipe } from 'ramda'
 
@@ -57,7 +56,7 @@ const Navigation = () =>
     {
       ['HOME', 'TASK_LIST', 'CONTEXT_LIST'].map(
         page =>
-          <Item title={pages[page].title} page={page}/>,
+          <Item key={page} title={pages[page].title} page={page}/>,
       )
     }
   </div>

@@ -1,11 +1,10 @@
-/** @jsx h */
-import { h } from 'preact'
+import React from 'react'
+import ReactDOMServer from 'react-dom/server'
+import { createStore } from 'redux'
+import { Provider } from 'react-redux'
 import express from 'express'
 import path from 'path'
 import fs from 'fs'
-import { createStore } from 'redux'
-import renderToString from 'preact-render-to-string'
-import { Provider } from 'preact-redux'
 import createInitialState from './src/createInitialState'
 import reducer from './src/reducer'
 import Main from './src/components/Main'
@@ -21,7 +20,7 @@ const render = (request) => {
   const initialState = createInitialState(location)
   const store = createStore(reducer, initialState)
 
-  const rendered = renderToString(
+  const rendered = ReactDOMServer.renderToString(
     <Provider store={store}>
       <Main/>
     </Provider>,

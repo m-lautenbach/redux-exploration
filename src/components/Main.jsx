@@ -1,35 +1,23 @@
-/** @jsx h */
-import { h } from 'preact'
-import { connect } from 'preact-redux'
-import { lensProp, view, compose } from 'ramda'
+import React from 'react'
+import { connect } from 'react-redux'
 import { css } from 'emotion'
-import { lensRoute, lensQuery } from '../routing/lenses'
 import Navigation from './Navigation'
-
-const lensTestPage = lensRoute('/test/:id')
-const lensId = compose(
-  lensTestPage,
-  lensProp('id'),
-)
-const lensFilter = compose(lensQuery, lensProp('filter'))
+import { getPageByRoute } from '../routing/selectors'
 
 const Main = connect(
   state => ({
-    atTestPage: view(lensTestPage, state) !== null,
-    testPageId: view(lensId, state),
-    filter: view(lensFilter, state),
+    ActivePage: getPageByRoute(state).Component,
   }),
 )(
-  ({ atTestPage, testPageId, filter }) =>
+  ({ ActivePage }) =>
     <div
       id="main"
       className={css`
         font-family: 'Quicksand', sans-serif;
       `}
     >
-      <Navigation/>
-      <h1>Hello World</h1>
-      <span>{atTestPage && 'atTestPage'} {testPageId} {filter}</span>
+      <Navigation />
+      <ActivePage />
     </div>,
 )
 Main.displayName = 'Main'
