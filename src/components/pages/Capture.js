@@ -1,12 +1,17 @@
 import React from 'react'
 import { connect } from 'react-redux'
+import { view } from 'ramda'
+import uuidv4 from 'uuid/v4'
+import { lensTasks } from '../../tasks/lenses'
 
 export default connect(
-  null,
-  dispatch => ({
-    onConfirm: (title) => dispatch({ type: 'CREATE_TASK', payload: { newTask: { title} } }),
+  state => ({
+    tasks: view(lensTasks, state) || [],
   }),
-)(({ onConfirm }) =>
+  dispatch => ({
+    onConfirm: (title) => dispatch({ type: 'CREATE_TASK', payload: { newTask: { title, id: uuidv4() } } }),
+  }),
+)(({ onConfirm, tasks }) =>
   <div>
     <h1>Capture</h1>
     <input
@@ -18,6 +23,15 @@ export default connect(
           e.target.value = ''
         }
       }}
+      css={{
+        fontFamily: '\'Quicksand\', sans-serif',
+        marginBottom: '.5rem'
+      }}
     />
+    {
+      tasks.map(
+        ({ title, id }) => <div key={id}>{title}</div>,
+      )
+    }
   </div>,
 )
