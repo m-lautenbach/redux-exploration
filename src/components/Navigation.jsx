@@ -62,7 +62,7 @@ const Navigation = () =>
     }}
   >
     {
-      ['HOME', 'TASK_LIST', 'CONTEXT_LIST'].map(
+      ['CAPTURE', 'CLARIFY', 'REFLECT', 'ENGAGE'].map(
         page =>
           <Item key={page} title={pages[page].title} page={page} />,
       )

@@ -1,5 +1,6 @@
 export default {
-  HOME: '/',
-  TASK_LIST: '/task_list',
-  CONTEXT_LIST: '/context_list',
+  CAPTURE: '/',
+  CLARIFY: '/clarify',
+  REFLECT: '/reflect',
+  ENGAGE: '/engage',
 }
