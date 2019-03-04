@@ -18,7 +18,7 @@ export default connect(
       type="text"
       autoFocus
       onKeyDown={(e) => {
-        if (e.key === 'Enter') {
+        if (e.key === 'Enter' && e.target.value.length > 0) {
           onConfirm(e.target.value)
           e.target.value = ''
         }
