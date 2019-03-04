@@ -1,11 +1,15 @@
 import React from 'react'
 import express from 'express'
+import { createServer } from 'http'
 import path from 'path'
 import fs from 'fs'
+import { listen } from 'socket.io'
 import render from './src/server/render'
 
 const port = process.env.PORT || 3000
 const app = express()
+const http = createServer(app)
+const io = listen(http)
 
 app.use('/static', express.static(__dirname + '/dist'))
 
@@ -17,5 +21,9 @@ app.get('*', function (request, response) {
   )
 })
 
-app.listen(port)
+io.on('connection', function (socket) {
+  console.log('a user connected')
+})
+
+http.listen(port)
 console.log('server started on port ' + port)
