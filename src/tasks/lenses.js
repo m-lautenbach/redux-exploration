@@ -1,3 +1,4 @@
-import { lensProp } from 'ramda'
+import { compose, lensProp } from 'ramda'
+import { lensModel } from '../model/lenses'
 
-export const lensTasks = lensProp('tasks')
+export const lensTasks = compose(lensModel, lensProp('tasks'))
