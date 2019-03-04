@@ -8,7 +8,7 @@ export default cond([
     hasType('CREATE_TASK'),
     updateState(
       over(lensTasks),
-      pipe(path(['payload', 'newTask']), prepend)
+      pipe(path(['payload', 'newTask']), prepend),
     ),
   ],
   [T, state],

@@ -21,8 +21,9 @@ app.get('*', function (request, response) {
   )
 })
 
-io.on('connection', function (socket) {
+io.on('connection', socket => {
   console.log('a user connected')
+  socket.on('actions', (action, callback) => console.log(action) || callback(true))
 })
 
 http.listen(port)
