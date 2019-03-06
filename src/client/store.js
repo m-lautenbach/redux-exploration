@@ -3,7 +3,7 @@ import { compose } from 'ramda'
 
 import reducer from '../reducer'
 import reducers from './reducers'
-import middlewares from '../middlewares'
+import middlewares from './middlewares'
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__({ trace: true, traceLimit: 25 }) || compose
 
