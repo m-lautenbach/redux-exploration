@@ -22,7 +22,9 @@ module.exports = {
       },
     ],
   },
+  entry: './code/src/index.js',
   output: {
+    path: __dirname + '/code/dist',
     publicPath: '/static',
   },
   resolve: {
@@ -30,7 +32,7 @@ module.exports = {
   },
   plugins: [
     new HtmlWebPackPlugin({
-      template: './src/index.html',
+      template: './code/src/index.html',
       filename: './index.html',
     }),
   ],
