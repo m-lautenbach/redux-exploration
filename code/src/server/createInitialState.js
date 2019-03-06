@@ -1,6 +1,6 @@
 import { compose, set } from 'ramda'
-import { lensState as routingState } from '../routing/lenses'
-import locationToPersistable from '../routing/locationToPersistable'
+import { lensState as routingState } from '../shared/routing/lenses'
+import locationToPersistable from '../shared/routing/locationToPersistable'
 
 export default (location) =>
   compose(

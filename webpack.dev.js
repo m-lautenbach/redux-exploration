@@ -22,7 +22,7 @@ module.exports = {
       },
     ],
   },
-  entry: './code/src/index.js',
+  entry: './code/src/client/index.js',
   output: {
     path: __dirname + '/code/dist',
     publicPath: '/static',

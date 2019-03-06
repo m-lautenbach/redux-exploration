@@ -1,5 +1,5 @@
 import { T, cond, over, set, pipe, view, assoc, prop, lt, gte, not, append, allPass, reject, flip } from 'ramda'
-import { hasType, state } from '../../utils'
+import { hasType, state } from '../../../shared/utils'
 import { lensActions, lensIndex } from '../lenses'
 
 export default cond([

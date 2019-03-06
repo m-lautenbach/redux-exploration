@@ -3,8 +3,8 @@ import { hydrate } from 'react-dom'
 import { Provider } from 'react-redux'
 import { pipe, view, filter, prop, last, lte, isEmpty } from 'ramda'
 import io from 'socket.io-client'
-import Main from './components/Main'
-import store from './client/store'
+import Main from '../shared/components/Main'
+import store from './store'
 import { lensActions } from './serverEvents/lenses'
 
 const socket = io()

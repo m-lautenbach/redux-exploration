@@ -1,7 +1,7 @@
 import React from 'react'
 import { renderToString } from 'react-dom/server'
 import { Provider } from 'react-redux'
-import Main from '../components/Main'
+import Main from '../shared/components/Main'
 
 export default (template, store) => {
 
