@@ -3,6 +3,7 @@ import { createStore } from 'redux'
 import { renderToString } from 'react-dom/server'
 import { Provider } from 'react-redux'
 import reducer from '../reducer'
+import reducers from './reducers'
 import Main from '../components/Main'
 import createInitialState from '../createInitialState'
 
@@ -10,7 +11,7 @@ export default (request, template) => {
   const [pathname, search] = request.originalUrl.split('?')
   const location = { pathname, search: search ? `?${search}` : '' }
   const initialState = createInitialState(location)
-  const store = createStore(reducer, initialState)
+  const store = createStore(reducer(reducers), initialState)
 
   const rendered = renderToString(
     <Provider store={store}>
