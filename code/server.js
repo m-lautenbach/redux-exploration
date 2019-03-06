@@ -7,7 +7,10 @@ import { listen } from 'socket.io'
 import render from './src/server/render'
 import { create as createStore } from './src/server/store'
 import requestToLocation from './src/server/requestToLocation'
+import lowdb from 'lowdb'
+import FileSync from 'lowdb/adapters/FileSync'
 
+const db = lowdb(new FileSync('data/db.json'))
 const port = process.env.PORT || 3000
 const app = express()
 const http = createServer(app)
@@ -16,19 +19,24 @@ const io = listen(http)
 app.use('/static', express.static(__dirname + '/dist'))
 
 let store
-// serve all non-static files with prerendered index.html
+
+function startPersisting() {
+  db.set('redux', store.getState()).write()
+  setTimeout(startPersisting, 2000)
+}
+
 app.get('*', function (request, response) {
   fs.readFile(
     path.resolve(__dirname, 'dist/index.html'),
     (_, template) => {
       if (!store) {
-        store = createStore(request)
-      } else {
-        store.dispatch({
-          type: 'USER_NAVIGATION',
-          payload: { newLocation: requestToLocation(request) },
-        })
+        store = createStore(db.get('redux').value())
+        startPersisting()
       }
+      store.dispatch({
+        type: 'USER_NAVIGATION',
+        payload: { newLocation: requestToLocation(request) },
+      })
       response.send(render(template.toString(), store))
     },
   )
