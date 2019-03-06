@@ -8,7 +8,7 @@
     "build": "webpack --env prod",
     "watch": "webpack --watch",
     "start": "node server-bootstrap.js",
-    "analyze": "webpack --env prod --profile --json > stats.json && webpack-bundle-analyzer stats.json dist"
+    "analyze": "webpack --env prod --profile --json > stats.json && webpack-bundle-analyzer stats.json code/dist"
   },
   "keywords": [],
   "author": "",
