@@ -10,10 +10,16 @@ import render from './src/server/render'
 import { create as createStore } from './src/server/store'
 import requestToLocation from './src/server/requestToLocation'
 import lowdb from 'lowdb'
-import FileAsync from 'lowdb/adapters/FileAsync'
+import GhStorage from 'lowdb-gh-adapter'
+import { promisifyAll } from 'bluebird'
 
 (async function () {
-  const db = await lowdb(new FileAsync('data/db.json'))
+  promisifyAll(fs)
+
+  const config = JSON.parse(await fs.readFileAsync(path.resolve(__dirname, '../data/config.json')))
+
+  const db = await lowdb(new GhStorage(config.ghStorage))
+  db.defaults({}).write()
   const port = process.env.PORT || 3000
   const app = express()
   const http = createServer(app)
@@ -23,26 +29,29 @@ import FileAsync from 'lowdb/adapters/FileAsync'
 
   let store
 
+  let state
+
   async function startPersisting() {
-    await db.set('redux', store.getState()).write()
+    const newState = store.getState()
+    if (!state || newState !== state) {
+      await db.set('redux', newState).write()
+      state = newState
+    }
     setTimeout(startPersisting, 2000)
   }
 
   app.get('*', async function (request, response) {
-    fs.readFile(
-      path.resolve(__dirname, 'dist/index.html'),
-      async (_, template) => {
-        if (!store) {
-          store = createStore(await db.get('redux').value())
-          startPersisting()
-        }
-        store.dispatch({
-          type: 'USER_NAVIGATION',
-          payload: { newLocation: requestToLocation(request) },
-        })
-        response.send(render(template.toString(), store))
-      },
-    )
+    const template = await fs.readFileAsync(path.resolve(__dirname, 'dist/index.html'))
+    if (!store) {
+      store = createStore(await db.get('redux').value())
+      state = store.getState()
+      startPersisting()
+    }
+    store.dispatch({
+      type: 'USER_NAVIGATION',
+      payload: { newLocation: requestToLocation(request) },
+    })
+    response.send(render(template.toString(), store))
   })
 
   io.on('connection', socket => {
