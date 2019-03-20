@@ -24,7 +24,7 @@ module.exports = {
   },
   entry: './code/src/client/index.js',
   output: {
-    path: __dirname + '/code/dist',
+    path: __dirname + '/../code/dist',
     publicPath: '/static',
   },
   resolve: {
