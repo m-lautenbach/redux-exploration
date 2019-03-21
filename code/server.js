@@ -41,6 +41,9 @@ import { promisifyAll } from 'bluebird'
   }
 
   app.get('*', async function (request, response) {
+    if (request.path === '/favicon.ico') {
+      return response.status(404).end()
+    }
     const template = await fs.readFileAsync(path.resolve(__dirname, 'dist/index.html'))
     if (!store) {
       store = createStore(await db.get('redux').value())
