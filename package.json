@@ -2,7 +2,7 @@
   "name": "redux-exploration",
   "version": "1.0.0",
   "description": "",
-  "main": "code/server.js",
+  "main": "server-bootstrap.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "webpack --env prod",

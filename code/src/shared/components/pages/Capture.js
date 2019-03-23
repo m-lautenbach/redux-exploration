@@ -21,7 +21,9 @@ export default connect(
       }}
       css={{
         fontFamily: '\'Quicksand\', sans-serif',
+        fontSize: '2vmax',
         marginBottom: '.5rem',
+        width: '80vw',
       }}
     />
   </div>,
