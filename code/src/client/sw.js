@@ -1,6 +1,7 @@
 const CACHE_NAME = 'my-site-cache-v1'
 const urlsToCache = [
   '/',
+  '/share-target/',
 ]
 
 self.addEventListener('install', function (event) {

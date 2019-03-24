@@ -2,9 +2,9 @@
 import regeneratorRuntime from 'regenerator-runtime'
 import React from 'react'
 import express from 'express'
+import fs from 'fs'
 import { createServer } from 'http'
 import path from 'path'
-import fs from 'fs'
 import { listen } from 'socket.io'
 import render from './src/server/render'
 import { create as createStore } from './src/server/store'
@@ -43,6 +43,9 @@ import { promisifyAll } from 'bluebird'
   app.get('*', async function (request, response) {
     if (request.path === '/favicon.ico') {
       return response.status(404).end()
+    }
+    if (request.path === '/sw.js') {
+      return response.sendFile(path.resolve(__dirname, 'dist/sw.js'))
     }
     const template = await fs.readFileAsync(path.resolve(__dirname, 'dist/index.html'))
     if (!store) {

@@ -38,6 +38,7 @@ module.exports = {
     }),
     new CopyPlugin([
       { from: './assets', to: './assets' },
+      { from: './code/src/client/sw.js', to: './sw.js' },
     ]),
   ],
 }

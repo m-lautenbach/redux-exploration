@@ -1,4 +1,5 @@
 const HtmlWebPackPlugin = require('html-webpack-plugin')
+const CopyPlugin = require('copy-webpack-plugin');
 
 module.exports = {
   mode: 'production',
@@ -36,6 +37,7 @@ module.exports = {
     }),
     new CopyPlugin([
       { from: './assets', to: './assets' },
+      { from: './code/src/client/sw.js', to: './sw.js' },
     ]),
   ],
 }
