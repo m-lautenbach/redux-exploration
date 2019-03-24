@@ -1,4 +1,4 @@
-const HtmlWebPackPlugin = require("html-webpack-plugin");
+const HtmlWebPackPlugin = require('html-webpack-plugin')
 
 module.exports = {
   mode: 'production',
@@ -8,18 +8,18 @@ module.exports = {
         test: /\.(js|jsx)$/,
         exclude: /node_modules/,
         use: {
-          loader: "babel-loader"
-        }
+          loader: 'babel-loader',
+        },
       },
       {
         test: /\.html$/,
         use: [
           {
-            loader: "html-loader"
-          }
-        ]
-      }
-    ]
+            loader: 'html-loader',
+          },
+        ],
+      },
+    ],
   },
   entry: './code/src/client/index.js',
   output: {
@@ -31,8 +31,11 @@ module.exports = {
   },
   plugins: [
     new HtmlWebPackPlugin({
-      template: "./code/src/index.html",
-      filename: "./index.html"
-    })
-  ]
-};
+      template: './code/src/index.html',
+      filename: './index.html',
+    }),
+    new CopyPlugin([
+      { from: './assets', to: './assets' },
+    ]),
+  ],
+}
