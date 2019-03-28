@@ -1,17 +1,18 @@
 // noinspection ES6UnusedImports
 import regeneratorRuntime from 'regenerator-runtime'
-import React from 'react'
-import express from 'express'
 import fs from 'fs'
 import { createServer } from 'http'
 import path from 'path'
+import React from 'react'
+import express from 'express'
 import { listen } from 'socket.io'
-import render from './src/server/render'
-import { create as createStore } from './src/server/store'
-import requestToLocation from './src/server/requestToLocation'
 import lowdb from 'lowdb'
 import GhStorage from 'lowdb-gh-adapter'
 import { promisifyAll } from 'bluebird'
+
+import render from './src/server/render'
+import { create as createStore } from './src/server/store'
+import requestToLocation from './src/server/requestToLocation'
 
 (async function () {
   promisifyAll(fs)
