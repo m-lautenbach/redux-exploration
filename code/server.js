@@ -17,7 +17,19 @@ import requestToLocation from './src/server/requestToLocation'
 (async function () {
   promisifyAll(fs)
 
-  const config = JSON.parse(await fs.readFileAsync(path.resolve(__dirname, '../data/config.json')))
+  let config
+  try {
+    config = JSON.parse(await fs.readFileAsync(path.resolve(__dirname, '../data/config.json')))
+  } catch (ex) {
+    config = {
+      'ghStorage': {
+        'file': process.env.GH_STORAGE_FILE,
+        'repo': process.env.GH_STORAGE_REPO,
+        'user': process.env.GH_STORAGE_USER,
+        'token': process.env.GH_STORAGE_TOKEN,
+      },
+    }
+  }
 
   const db = await lowdb(new GhStorage(config.ghStorage))
   db.defaults({}).write()
