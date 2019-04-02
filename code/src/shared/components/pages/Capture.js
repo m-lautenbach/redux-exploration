@@ -21,9 +21,10 @@ export default connect(
       }}
       css={{
         fontFamily: '\'Quicksand\', sans-serif',
-        fontSize: '2vmax',
+        fontSize: '4rem',
         marginBottom: '.5rem',
-        width: '80vw',
+        width: '100%',
+        maxWidth: '1000px',
       }}
     />
   </div>,
