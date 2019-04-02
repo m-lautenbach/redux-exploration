@@ -19,11 +19,15 @@ self.addEventListener('fetch', function (event) {
   event.respondWith(
     caches.match(event.request)
     .then(function (response) {
-        // Cache hit - return response
-        if (response) {
-          return response
+        // only use cache when no fetching possible
+        try {
+          return fetch(event.request)
+        } catch (ex) {
+          if (response) {
+            return response
+          }
+          throw ex
         }
-        return fetch(event.request)
       },
     ),
   )
