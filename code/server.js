@@ -40,9 +40,10 @@ import requestToLocation from './src/server/requestToLocation'
 
   app.use('/static', express.static(__dirname + '/dist'))
 
-  let store
+  const store = createStore(await db.get('redux').value())
 
-  let state
+  let state = store.getState()
+  await startPersisting()
 
   async function startPersisting() {
     const newState = store.getState()
@@ -53,7 +54,7 @@ import requestToLocation from './src/server/requestToLocation'
     setTimeout(startPersisting, 2000)
   }
 
-  app.get('*', async function (request, response) {
+  app.get('*', async (request, response) => {
     if (request.path === '/favicon.ico') {
       return response.status(404).end()
     }
@@ -61,11 +62,6 @@ import requestToLocation from './src/server/requestToLocation'
       return response.sendFile(path.resolve(__dirname, 'dist/sw.js'))
     }
     const template = await fs.readFileAsync(path.resolve(__dirname, 'dist/index.html'))
-    if (!store) {
-      store = createStore(await db.get('redux').value())
-      state = store.getState()
-      startPersisting()
-    }
     store.dispatch({
       type: 'USER_NAVIGATION',
       payload: { newLocation: requestToLocation(request) },
