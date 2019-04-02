@@ -1,6 +1,6 @@
 {
-  "short_name": "ReReReReRe...",
-  "name": "Redux Exploration",
+  "short_name": "GmTD",
+  "name": "Getting my things done",
   "icons": [
     {
       "src": "/static/assets/images/app-icon-192.png",
@@ -14,7 +14,7 @@
     }
   ],
   "start_url": "/",
-  "background_color": "#3367D6",
+  "background_color": "#e1f0fa",
   "display": "standalone",
   "scope": "/",
   "theme_color": "#3367D6",
