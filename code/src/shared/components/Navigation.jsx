@@ -30,8 +30,8 @@ const Item = connect(
           border: '#484848 solid 1px',
           borderRight: 'none',
           borderLeft: 'none',
-          borderRadius: '.2rem',
-          padding: '.2rem',
+          borderRadius: '.6rem',
+          padding: '.4rem',
           transition: 'background-color .8s',
           ...(active ?
               { backgroundColor: '#ffe6e6' } :

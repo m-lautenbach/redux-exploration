@@ -13,7 +13,7 @@ const Main = connect(
       id="main"
       css={{
         fontFamily: '\'Quicksand\', sans-serif',
-        fontSize: '2vmax',
+        fontSize: '3rem',
       }}
     >
       <Navigation />
